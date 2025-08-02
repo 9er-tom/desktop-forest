@@ -23,7 +23,6 @@ script = ExtResource("1_h2yge")
 taskbarOrientation = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
-visible = false
 offset_right = 2560.0
 offset_bottom = 200.0
 border_width = 5.0
@@ -49,11 +48,11 @@ script = ExtResource("4_1bvp3")
 
 [node name="toolboxToggleButton" type="TextureButton" parent="toolbox" node_paths=PackedStringArray("showElement", "hideElement")]
 z_index = 4096
-offset_left = 283.0
-offset_top = 258.0
-offset_right = 529.0
-offset_bottom = 529.0
-scale = Vector2(0.23, 0.23)
+offset_left = 238.0
+offset_top = 230.0
+offset_right = 484.0
+offset_bottom = 501.0
+scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("5_dg77c")
 script = ExtResource("6_ycdy4")
 showElement = NodePath("../openToolbox")

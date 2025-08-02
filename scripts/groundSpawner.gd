@@ -5,7 +5,7 @@ extends Node2D
 
 @export var gridCellSize: Vector2i
 @export var gridMaxGutter := 20
-@export var gridCellYMaxOffset := 15
+@export var gridCellYMaxOffset := 30
 
 var spawnGrid: Array[Vector2i]
 func _ready() -> void:
@@ -14,10 +14,10 @@ func _ready() -> void:
 
 func _make_spawn_grid() -> void:
 	var screenSize := get_window().size
-	var currentGridX := gridCellSize.x
-	while currentGridX < screenSize.x:
+	var currentGridX := gridCellSize.x/2
+	while currentGridX < screenSize.x - gridCellSize.x/2:
 		var gutter = randi_range(5, gridMaxGutter)
-		var spawnSlot :=Vector2i(currentGridX, gridCellSize.y + randi_range(0,gridCellYMaxOffset)) 
+		var spawnSlot :=Vector2i(currentGridX, gridCellSize.y - randi_range(10,gridCellYMaxOffset)) 
 		spawnGrid.append(spawnSlot)
 		currentGridX += gridCellSize.x + gutter
 		
