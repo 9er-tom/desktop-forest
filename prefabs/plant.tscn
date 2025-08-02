@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://x1n5d7yptqgq"]
+
+[ext_resource type="Script" uid="uid://b3frrt2i7fywe" path="res://scripts/plant.gd" id="1_bswx0"]
+[ext_resource type="Texture2D" uid="uid://dri7guloclqfl" path="res://assets/plants/1.PNG" id="2_nb6st"]
+[ext_resource type="Texture2D" uid="uid://daogmpcg7duxe" path="res://assets/plants/2.PNG" id="3_8laha"]
+[ext_resource type="Texture2D" uid="uid://vhe5576vpfma" path="res://assets/plants/3.PNG" id="4_r0ox0"]
+[ext_resource type="Texture2D" uid="uid://cbdkpww4tf8ct" path="res://assets/plants/4.PNG" id="5_jiiti"]
+[ext_resource type="Texture2D" uid="uid://cmibvwsat2lwn" path="res://assets/plants/5.PNG" id="6_xrecf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_82xsv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nb6st")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8laha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r0ox0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jiiti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xrecf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Plant" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_bswx0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_82xsv")
+frame_progress = 0.086489
+speed_scale = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
