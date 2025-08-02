@@ -1,11 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cisff3wt23ujv"]
+[gd_scene load_steps=15 format=3 uid="uid://cisff3wt23ujv"]
 
 [ext_resource type="Script" uid="uid://b1b0hlveqelsp" path="res://scripts/main.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cg55tm2kh47nv" path="res://scripts/Screenshot 2024-10-20 140952.png" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://ciyrgfr1adc0c" path="res://scripts/bingus.gd" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://sal1akpormev" path="res://scripts/toolbox.gd" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dd34qdkkgljb7" path="res://assets/ui/Sprites/UI_Flat_Button02a_4.png" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://c3matn5qctx83" path="res://assets/ui/acorn.PNG" id="5_dg77c"]
+[ext_resource type="Texture2D" uid="uid://40pyj4lh0s5w" path="res://assets/ui/toolbox.PNG" id="5_efxa6"]
 [ext_resource type="Texture2D" uid="uid://chsnfwkioxpc1" path="res://assets/ui/Sprites/UI_Flat_Button02a_1.png" id="6_5vw27"]
+[ext_resource type="Script" uid="uid://d00v6c26s1vwm" path="res://scripts/ui/toggleVisibility.gd" id="6_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://k4e0up8okj0m" path="res://assets/ui/Sprites/UI_Flat_Button02a_3.png" id="7_kek77"]
 [ext_resource type="PackedScene" uid="uid://x1n5d7yptqgq" path="res://prefabs/plant.tscn" id="8_4c57u"]
 [ext_resource type="Script" uid="uid://degd3l2d4n1v5" path="res://scripts/bg/grassSpawn.gd" id="8_kek77"]
@@ -20,6 +23,7 @@ script = ExtResource("1_h2yge")
 taskbarOrientation = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
+visible = false
 offset_right = 2560.0
 offset_bottom = 200.0
 border_width = 5.0
@@ -36,28 +40,55 @@ speed = 10
 [node name="toolbox" type="Window" parent="."]
 transparent_bg = true
 position = Vector2i(0, 36)
-size = Vector2i(150, 250)
+size = Vector2i(350, 350)
 unresizable = true
+borderless = true
 always_on_top = true
 transparent = true
 script = ExtResource("4_1bvp3")
 
-[node name="plantButtons" type="VBoxContainer" parent="toolbox"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="toolboxToggleButton" type="TextureButton" parent="toolbox" node_paths=PackedStringArray("showElement", "hideElement")]
+z_index = 4096
+offset_left = 283.0
+offset_top = 258.0
+offset_right = 529.0
+offset_bottom = 529.0
+scale = Vector2(0.23, 0.23)
+texture_normal = ExtResource("5_dg77c")
+script = ExtResource("6_ycdy4")
+showElement = NodePath("../openToolbox")
+hideElement = NodePath(".")
 
-[node name="SpawnBtn" type="TextureButton" parent="toolbox/plantButtons"]
+[node name="openToolbox" type="TextureRect" parent="toolbox"]
+visible = false
+z_index = 4096
+offset_right = 350.0
+offset_bottom = 250.0
+texture = ExtResource("5_efxa6")
+expand_mode = 5
+
+[node name="TextureButton" type="TextureButton" parent="toolbox/openToolbox" node_paths=PackedStringArray("showElement", "hideElement")]
+offset_left = 287.0
+offset_top = 35.0
+offset_right = 337.0
+offset_bottom = 85.0
+script = ExtResource("6_ycdy4")
+showElement = NodePath("../../toolboxToggleButton")
+hideElement = NodePath("..")
+
+[node name="GrowBtn" type="TextureButton" parent="toolbox/openToolbox"]
 texture_filter = 3
 layout_mode = 2
+offset_left = 61.0
+offset_top = 80.0
+offset_right = 125.0
+offset_bottom = 144.0
 texture_normal = ExtResource("5_272bh")
 texture_pressed = ExtResource("6_5vw27")
 texture_hover = ExtResource("7_kek77")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="toolbox/plantButtons/SpawnBtn"]
+[node name="Label" type="Label" parent="toolbox/openToolbox/GrowBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -70,19 +101,23 @@ offset_right = 52.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Spawn Plant"
+text = "G"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
-[node name="GrowBtn" type="TextureButton" parent="toolbox/plantButtons"]
+[node name="SpawnBtn" type="TextureButton" parent="toolbox/openToolbox"]
 texture_filter = 3
 layout_mode = 2
+offset_left = 141.0
+offset_top = 80.0
+offset_right = 205.0
+offset_bottom = 144.0
 texture_normal = ExtResource("5_272bh")
 texture_pressed = ExtResource("6_5vw27")
 texture_hover = ExtResource("7_kek77")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="toolbox/plantButtons/GrowBtn"]
+[node name="Label" type="Label" parent="toolbox/openToolbox/SpawnBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,19 +130,23 @@ offset_right = 52.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Grow Plant"
+text = "S"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
-[node name="RemoveBtn" type="TextureButton" parent="toolbox/plantButtons"]
+[node name="RemoveBtn" type="TextureButton" parent="toolbox/openToolbox"]
 texture_filter = 3
 layout_mode = 2
+offset_left = 220.0
+offset_top = 80.0
+offset_right = 284.0
+offset_bottom = 144.0
 texture_normal = ExtResource("5_272bh")
 texture_pressed = ExtResource("6_5vw27")
 texture_hover = ExtResource("7_kek77")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="toolbox/plantButtons/RemoveBtn"]
+[node name="Label" type="Label" parent="toolbox/openToolbox/RemoveBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -120,7 +159,7 @@ offset_right = 52.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Remove Plant"
+text = "R"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
@@ -137,5 +176,5 @@ position = Vector2(0, 200)
 [node name="GroundSpawner" type="Node2D" parent="SpawnManager" node_paths=PackedStringArray("spawnButton")]
 script = ExtResource("9_4c57u")
 plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
-spawnButton = NodePath("../../toolbox/plantButtons/SpawnBtn")
+spawnButton = NodePath("../../toolbox/openToolbox/SpawnBtn")
 gridCellSize = Vector2i(200, 160)
