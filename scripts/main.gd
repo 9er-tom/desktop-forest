@@ -42,4 +42,4 @@ func _ready():
 	setToolboxPos.call_deferred()
 
 func setToolboxPos():
-	toolbox.position = Vector2i(mainDisplayX_RIGHT - toolbox.size.x, taskbarPos - toolbox.size.y - 150)
+	toolbox.position = Vector2i(mainDisplayX_RIGHT - toolbox.size.x, taskbarPos - toolbox.size.y - 100)

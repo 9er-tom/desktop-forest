@@ -59,7 +59,6 @@ showElement = NodePath("../openToolbox")
 hideElement = NodePath(".")
 
 [node name="openToolbox" type="TextureRect" parent="toolbox"]
-visible = false
 z_index = 4096
 offset_right = 350.0
 offset_bottom = 250.0
@@ -67,6 +66,7 @@ texture = ExtResource("5_efxa6")
 expand_mode = 5
 
 [node name="TextureButton" type="TextureButton" parent="toolbox/openToolbox" node_paths=PackedStringArray("showElement", "hideElement")]
+layout_mode = 0
 offset_left = 287.0
 offset_top = 35.0
 offset_right = 337.0
@@ -100,7 +100,7 @@ offset_right = 52.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "G"
+text = "Water"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
@@ -129,7 +129,7 @@ offset_right = 52.0
 offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "S"
+text = "Plant"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
@@ -177,3 +177,10 @@ script = ExtResource("9_4c57u")
 plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
 spawnButton = NodePath("../../toolbox/openToolbox/SpawnBtn")
 gridCellSize = Vector2i(200, 160)
+
+[node name="CursorTool" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_0xm2m")
+expand_mode = 3
+stretch_mode = 4
