@@ -9,7 +9,7 @@ var direction := Vector2.RIGHT
 
 
 func _physics_process(delta: float) -> void:
-	translate(direction * speed)
+	#translate(direction * speed)
 	if (direction == Vector2.RIGHT && position.x > DisplayServer.screen_get_size().x - spriteWidth):
 		direction = Vector2.LEFT
 	if (direction == Vector2.LEFT && position.x < spriteWidth):

@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://b6r8t4ppxp44f"]
+
+[ext_resource type="Texture2D" uid="uid://20ms6hufpor2" path="res://assets/ui/toolIcons/wateringCan/1.PNG" id="1_1vx2f"]
+[ext_resource type="Texture2D" uid="uid://bwek6pgfvhxe" path="res://assets/ui/toolIcons/wateringCan/2.PNG" id="2_qx6ro"]
+[ext_resource type="Texture2D" uid="uid://ca0rjvocolrm8" path="res://assets/ui/toolIcons/wateringCan/3.PNG" id="3_xl1wt"]
+[ext_resource type="Texture2D" uid="uid://kopwvpbk5fsu" path="res://assets/ui/toolIcons/wateringCan/4.PNG" id="4_vqn1w"]
+[ext_resource type="Texture2D" uid="uid://dfddf2fe17mii" path="res://assets/ui/toolIcons/wateringCan/5.PNG" id="5_krdf0"]
+[ext_resource type="Texture2D" uid="uid://bvnci230phbdh" path="res://assets/ui/toolIcons/wateringCan/6.PNG" id="6_ms3xw"]
+[ext_resource type="Texture2D" uid="uid://bwq7ugs5072jn" path="res://assets/ui/toolIcons/wateringCan/7.PNG" id="7_tvbii"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1vx2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qx6ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xl1wt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vqn1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_krdf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ms3xw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tvbii")
+}],
+"loop": false,
+"name": &"wateringCan",
+"speed": 12.0
+}]
