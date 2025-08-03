@@ -12,23 +12,19 @@ func _process(delta: float) -> void:
 	position = get_global_mouse_position() + mouseOffset
 	if Input.is_action_just_pressed("Interact"):
 		play()
-		print_debug("press")
 	if Input.is_action_just_released("Interact"):
 		stop()
 		frame = 0
-		print_debug("release")
-
 
 func setCurrentTool(tool: GardenTools):
 	currentTool = tool
-	print_debug(currentTool)
 	match currentTool:
 		GardenTools.WATERING_CAN:
 			animation = "wateringCan"
-			set_frame(0)
+			frame = 0
 		GardenTools.SHOVEL:
-			animation = "wateringCan"
-			set_frame(5)
+			animation = "wateringCan" # todo change this to shovel
+			frame = 5
 		GardenTools.NONE:
 			visible = false
 			return

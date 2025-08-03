@@ -1,11 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://x1n5d7yptqgq"]
+[gd_scene load_steps=11 format=3 uid="uid://x1n5d7yptqgq"]
 
 [ext_resource type="Script" uid="uid://b3frrt2i7fywe" path="res://scripts/plant.gd" id="1_bswx0"]
+[ext_resource type="Shader" uid="uid://1umkeugo14g7" path="res://shader/outline.gdshader" id="2_8laha"]
 [ext_resource type="Texture2D" uid="uid://dri7guloclqfl" path="res://assets/plants/1.PNG" id="2_nb6st"]
 [ext_resource type="Texture2D" uid="uid://daogmpcg7duxe" path="res://assets/plants/2.PNG" id="3_8laha"]
 [ext_resource type="Texture2D" uid="uid://vhe5576vpfma" path="res://assets/plants/3.PNG" id="4_r0ox0"]
 [ext_resource type="Texture2D" uid="uid://cbdkpww4tf8ct" path="res://assets/plants/4.PNG" id="5_jiiti"]
 [ext_resource type="Texture2D" uid="uid://cmibvwsat2lwn" path="res://assets/plants/5.PNG" id="6_xrecf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nb6st"]
+shader = ExtResource("2_8laha")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 10.0
+shader_parameter/pattern = 1
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_82xsv"]
 animations = [{
@@ -30,15 +40,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nb6st"]
+size = Vector2(1200, 1180)
+
 [node name="Plant" type="Node2D"]
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_bswx0")
+outlineMaterial = SubResource("ShaderMaterial_nb6st")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_82xsv")
-frame_progress = 0.086489
 speed_scale = 0.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.17891e-06, -9.53674e-06)
+shape = SubResource("RectangleShape2D_nb6st")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -600.0
+offset_top = -586.667
+offset_right = 600.0
+offset_bottom = 593.333
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
