@@ -11,6 +11,7 @@ var spawnGrid: Array[Vector2i]
 func _ready() -> void:
 	spawnButton.pressed.connect(_on_spawn_btn_pressed)
 	_make_spawn_grid.call_deferred() # defer this to after main window resize
+	#position.y = get_window().size.y
 
 func _make_spawn_grid() -> void:
 	var screenSize := get_window().size
@@ -20,8 +21,6 @@ func _make_spawn_grid() -> void:
 		var spawnSlot :=Vector2i(currentGridX, gridCellSize.y - randi_range(10,gridCellYMaxOffset)) 
 		spawnGrid.append(spawnSlot)
 		currentGridX += gridCellSize.x + gutter
-		
-	print_debug(spawnGrid)
 
 func _on_spawn_btn_pressed()-> void:
 	if spawnGrid.size() == 0:

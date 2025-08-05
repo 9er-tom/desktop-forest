@@ -11,7 +11,10 @@ extends Node
 
 enum TASKBAR_ORIENTATION {LEFT, RIGHT, UP, DOWN}
 
-@export var toolboxWindow: Window
+@export var toolboxWindow: Control
+@export var toolboxButton: BaseButton
+@export var mainWindowReference: ReferenceRect
+
 @export var windowHeight := 200
 @export var taskbarOrientation := TASKBAR_ORIENTATION.DOWN
 
@@ -23,7 +26,7 @@ func _ready():
 	#get_tree().get_root().set_transparent_background(true)
 
 	_MainWindow.position.x = mainScreenPosNull.x
-	_MainWindow.min_size = Vector2i(screenWidth,windowHeight)
+	_MainWindow.min_size = Vector2i(usableScreen.x,windowHeight)
 	_MainWindow.size = _MainWindow.min_size
 		
 	match taskbarOrientation:
@@ -38,8 +41,4 @@ func _ready():
 
 
 	_MainWindow.position.y = taskbarPos - windowHeight
-	# set toolbox window pos
-	setToolboxPos.call_deferred()
-
-func setToolboxPos():
-	toolboxWindow.position = Vector2i(mainDisplayX_RIGHT - toolboxWindow.size.x, taskbarPos - toolboxWindow.size.y - 100)
+	mainWindowReference.size = _MainWindow.size

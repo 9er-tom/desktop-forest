@@ -23,15 +23,15 @@
 font_size = 14
 font_color = Color(0, 0, 0, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("toolboxWindow")]
+[node name="Main" type="Node" node_paths=PackedStringArray("toolboxWindow", "toolboxButton", "mainWindowReference")]
 script = ExtResource("1_h2yge")
-toolboxWindow = NodePath("toolboxWindow")
+toolboxWindow = NodePath("ToolboxUi/toolbox")
+toolboxButton = NodePath("ToolboxUi/toolboxToggleButton")
+mainWindowReference = NodePath("ReferenceRect")
+windowHeight = 500
 taskbarOrientation = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
-visible = false
-offset_right = 2560.0
-offset_bottom = 200.0
 border_width = 5.0
 editor_only = false
 
@@ -44,17 +44,15 @@ texture = ExtResource("2_0xm2m")
 script = ExtResource("3_h2yge")
 speed = 5
 
-[node name="toolboxWindow" type="Window" parent="."]
-transparent_bg = true
-position = Vector2i(0, 36)
-size = Vector2i(350, 350)
-unresizable = true
-borderless = true
-always_on_top = true
-transparent = true
-script = ExtResource("4_1bvp3")
+[node name="ToolboxUi" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1473.0
+offset_top = 2.0
+offset_right = 1513.0
+offset_bottom = 42.0
 
-[node name="toolboxToggleButton" type="TextureButton" parent="toolboxWindow" node_paths=PackedStringArray("showElement", "hideElement")]
+[node name="toolboxToggleButton" type="TextureButton" parent="ToolboxUi" node_paths=PackedStringArray("showElement", "hideElement")]
 z_index = 400
 offset_left = 238.0
 offset_top = 230.0
@@ -66,11 +64,11 @@ script = ExtResource("6_ycdy4")
 showElement = NodePath("../toolbox")
 hideElement = NodePath(".")
 
-[node name="toolbox" type="TextureRect" parent="toolboxWindow" node_paths=PackedStringArray("waterButton", "shovelButton", "cursorTool")]
+[node name="toolbox" type="TextureRect" parent="ToolboxUi" node_paths=PackedStringArray("waterButton", "shovelButton", "cursorTool")]
 visible = false
 z_index = 400
 offset_right = 350.0
-offset_bottom = 250.0
+offset_bottom = 344.419
 texture = ExtResource("5_efxa6")
 expand_mode = 5
 script = ExtResource("8_2cqfq")
@@ -78,7 +76,7 @@ waterButton = NodePath("WaterBtn/Button")
 shovelButton = NodePath("RemoveBtn")
 cursorTool = NodePath("../../CursorTool")
 
-[node name="TextureButton" type="TextureButton" parent="toolboxWindow/toolbox" node_paths=PackedStringArray("cursorTool", "showElement", "hideElement")]
+[node name="TextureButton" type="TextureButton" parent="ToolboxUi/toolbox" node_paths=PackedStringArray("cursorTool", "showElement", "hideElement")]
 layout_mode = 0
 offset_left = 287.0
 offset_top = 35.0
@@ -89,7 +87,7 @@ cursorTool = NodePath("../../../CursorTool")
 showElement = NodePath("../../toolboxToggleButton")
 hideElement = NodePath("..")
 
-[node name="WaterBtn" type="TextureRect" parent="toolboxWindow/toolbox"]
+[node name="WaterBtn" type="TextureRect" parent="ToolboxUi/toolbox"]
 texture_filter = 3
 layout_mode = 2
 offset_left = 51.0
@@ -99,7 +97,7 @@ offset_bottom = 149.0
 texture = ExtResource("10_074og")
 expand_mode = 3
 
-[node name="Button" type="Button" parent="toolboxWindow/toolbox/WaterBtn"]
+[node name="Button" type="Button" parent="ToolboxUi/toolbox/WaterBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +111,7 @@ grow_vertical = 2
 toggle_mode = true
 flat = true
 
-[node name="SpawnBtn" type="TextureButton" parent="toolboxWindow/toolbox"]
+[node name="SpawnBtn" type="TextureButton" parent="ToolboxUi/toolbox"]
 texture_filter = 3
 layout_mode = 2
 offset_left = 141.0
@@ -125,7 +123,7 @@ texture_pressed = ExtResource("6_5vw27")
 texture_hover = ExtResource("7_kek77")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="toolboxWindow/toolbox/SpawnBtn"]
+[node name="Label" type="Label" parent="ToolboxUi/toolbox/SpawnBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -142,7 +140,7 @@ text = "Plant"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
-[node name="RemoveBtn" type="TextureButton" parent="toolboxWindow/toolbox"]
+[node name="RemoveBtn" type="TextureButton" parent="ToolboxUi/toolbox"]
 texture_filter = 3
 layout_mode = 2
 offset_left = 220.0
@@ -154,7 +152,7 @@ texture_pressed = ExtResource("6_5vw27")
 texture_hover = ExtResource("7_kek77")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="toolboxWindow/toolbox/RemoveBtn"]
+[node name="Label" type="Label" parent="ToolboxUi/toolbox/RemoveBtn"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -171,26 +169,56 @@ text = "R"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
+[node name="toolboxWindow" type="Window" parent="."]
+transparent_bg = true
+position = Vector2i(0, 36)
+size = Vector2i(350, 350)
+visible = false
+unresizable = true
+borderless = true
+always_on_top = true
+transparent = true
+script = ExtResource("4_1bvp3")
+
 [node name="Background" type="Node2D" parent="."]
 z_index = 100
 
 [node name="Grass" type="Node2D" parent="Background"]
-position = Vector2(0, 200)
 script = ExtResource("8_kek77")
 
 [node name="SpawnManager" type="Node2D" parent="."]
 position = Vector2(0, 200)
 
 [node name="GroundSpawner" type="Node2D" parent="SpawnManager" node_paths=PackedStringArray("spawnButton")]
+position = Vector2(0, 300)
 script = ExtResource("9_4c57u")
 plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
-spawnButton = NodePath("../../toolboxWindow/toolbox/SpawnBtn")
+spawnButton = NodePath("../../ToolboxUi/toolbox/SpawnBtn")
 gridCellSize = Vector2i(200, 160)
 
 [node name="CursorTool" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 1000
 z_as_relative = false
 scale = Vector2(0.3, 0.3)
 sprite_frames = ExtResource("17_yaehf")
 animation = &"wateringCan"
 script = ExtResource("14_w48qg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "TESt"

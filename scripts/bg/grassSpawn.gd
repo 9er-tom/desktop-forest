@@ -17,7 +17,7 @@ func spawnSprites():
 	var currentX := 0
 
 	while (currentX < maxWidth):
-		var scale := randf_range(minScale, maxScale) # 0.05 .. 0.07
+		var scale := randf_range(minScale, maxScale) # 0.03 .. 0.05
 		var randGrassInt := randi_range(1, grassSpriteAmount) # 1 .. 3
 
 		var spritePng = load(
@@ -27,8 +27,7 @@ func spawnSprites():
 		var spriteObj: Sprite2D = Sprite2D.new()
 		spriteObj.texture = spritePng
 		spriteObj.scale = Vector2(scale, scale)
-		spriteObj.position.y = -50
-		spriteObj.position.y =  -(spriteObj.texture.get_size().y * scale / 3)
+		spriteObj.position.y = get_window().size.y-(spriteObj.texture.get_size().y * scale / 3)
 		spriteObj.position.x = currentX
 		currentX += spriteObj.texture.get_size().x * scale / 4
 		add_child(spriteObj)
