@@ -2,7 +2,9 @@ extends AnimatedSprite2D
 class_name CursorTool
 
 @export var mouseOffset := Vector2(20,20)
+@export var waterButton: Control
 
+var lastButton: Control
 # icons should be 256x256
 
 enum GardenTools {WATERING_CAN, SEED, SHOVEL, NONE}
@@ -17,11 +19,14 @@ func _process(_delta: float) -> void:
 		frame = 0
 	if Input.is_action_just_released("Cancel"):
 		set_current_tool(GardenTools.NONE)
-
+		lastButton.visible = true
+		
 func set_current_tool(tool: GardenTools):
 	currentTool = tool
 	match currentTool:
 		GardenTools.WATERING_CAN:
+			waterButton.visible = false
+			lastButton = waterButton
 			animation = "wateringCan"
 			frame = 0
 		GardenTools.SHOVEL:
@@ -31,4 +36,3 @@ func set_current_tool(tool: GardenTools):
 			visible = false
 			return
 	visible = true
-		# todo change texture to correct tool
