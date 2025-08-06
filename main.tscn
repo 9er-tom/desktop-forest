@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cisff3wt23ujv"]
+[gd_scene load_steps=19 format=3 uid="uid://cisff3wt23ujv"]
 
 [ext_resource type="Script" uid="uid://b1b0hlveqelsp" path="res://scripts/main.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cg55tm2kh47nv" path="res://scripts/Screenshot 2024-10-20 140952.png" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://ciyrgfr1adc0c" path="res://scripts/bingus.gd" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://sal1akpormev" path="res://scripts/toolbox.gd" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://dd34qdkkgljb7" path="res://assets/ui/Sprites/UI_Flat_Button02a_4.png" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://c3matn5qctx83" path="res://assets/ui/acorn.PNG" id="5_dg77c"]
 [ext_resource type="Texture2D" uid="uid://40pyj4lh0s5w" path="res://assets/ui/toolbox.PNG" id="5_efxa6"]
@@ -179,17 +178,6 @@ grow_vertical = 2
 text = "R"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
-
-[node name="toolboxWindow" type="Window" parent="."]
-transparent_bg = true
-position = Vector2i(0, 36)
-size = Vector2i(350, 350)
-visible = false
-unresizable = true
-borderless = true
-always_on_top = true
-transparent = true
-script = ExtResource("4_1bvp3")
 
 [node name="CursorTool" type="AnimatedSprite2D" parent="."]
 visible = false

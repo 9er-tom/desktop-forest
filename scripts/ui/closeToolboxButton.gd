@@ -11,4 +11,4 @@ func _on_pressed():
 	showElement.visible = !showElement.visible
 	hideElement.visible = !hideElement.visible
 
-	cursorTool.setCurrentTool(CursorTool.GardenTools.NONE)	
+	cursorTool.set_current_tool(CursorTool.GardenTools.NONE)	

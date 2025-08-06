@@ -8,15 +8,17 @@ class_name CursorTool
 enum GardenTools {WATERING_CAN, SEED, SHOVEL, NONE}
 var currentTool := GardenTools.NONE
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position = get_global_mouse_position() + mouseOffset
 	if Input.is_action_just_pressed("Interact"):
 		play()
 	if Input.is_action_just_released("Interact"):
 		stop()
 		frame = 0
+	if Input.is_action_just_released("Cancel"):
+		set_current_tool(GardenTools.NONE)
 
-func setCurrentTool(tool: GardenTools):
+func set_current_tool(tool: GardenTools):
 	currentTool = tool
 	match currentTool:
 		GardenTools.WATERING_CAN:

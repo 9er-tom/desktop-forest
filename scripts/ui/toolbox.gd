@@ -9,4 +9,4 @@ func _ready() -> void:
 	shovelButton.pressed.connect(_on_toolbutton_pressed.bind(CursorTool.GardenTools.SHOVEL))
 
 func _on_toolbutton_pressed(tool: CursorTool.GardenTools):
-	cursorTool.setCurrentTool(tool)
+	cursorTool.set_current_tool(tool)
