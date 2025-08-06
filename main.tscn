@@ -23,7 +23,13 @@
 font_size = 14
 font_color = Color(0, 0, 0, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("toolboxWindow", "toolboxButton", "mainWindowReference")]
+[node name="Main" type="Control" node_paths=PackedStringArray("toolboxWindow", "toolboxButton", "mainWindowReference")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_h2yge")
 toolboxWindow = NodePath("ToolboxUi/toolbox")
 toolboxButton = NodePath("ToolboxUi/toolboxToggleButton")
@@ -32,6 +38,8 @@ windowHeight = 500
 taskbarOrientation = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 0
+mouse_filter = 2
 border_width = 5.0
 editor_only = false
 
@@ -54,6 +62,7 @@ offset_bottom = 42.0
 
 [node name="toolboxToggleButton" type="TextureButton" parent="ToolboxUi" node_paths=PackedStringArray("showElement", "hideElement")]
 z_index = 400
+layout_mode = 0
 offset_left = 238.0
 offset_top = 230.0
 offset_right = 484.0
@@ -67,8 +76,10 @@ hideElement = NodePath(".")
 [node name="toolbox" type="TextureRect" parent="ToolboxUi" node_paths=PackedStringArray("waterButton", "shovelButton", "cursorTool")]
 visible = false
 z_index = 400
+layout_mode = 0
 offset_right = 350.0
 offset_bottom = 344.419
+mouse_filter = 0
 texture = ExtResource("5_efxa6")
 expand_mode = 5
 script = ExtResource("8_2cqfq")
@@ -180,22 +191,6 @@ always_on_top = true
 transparent = true
 script = ExtResource("4_1bvp3")
 
-[node name="Background" type="Node2D" parent="."]
-z_index = 100
-
-[node name="Grass" type="Node2D" parent="Background"]
-script = ExtResource("8_kek77")
-
-[node name="SpawnManager" type="Node2D" parent="."]
-position = Vector2(0, 200)
-
-[node name="GroundSpawner" type="Node2D" parent="SpawnManager" node_paths=PackedStringArray("spawnButton")]
-position = Vector2(0, 300)
-script = ExtResource("9_4c57u")
-plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
-spawnButton = NodePath("../../ToolboxUi/toolbox/SpawnBtn")
-gridCellSize = Vector2i(200, 160)
-
 [node name="CursorTool" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = 1000
@@ -205,20 +200,21 @@ sprite_frames = ExtResource("17_yaehf")
 animation = &"wateringCan"
 script = ExtResource("14_w48qg")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
+[node name="GroundSlot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
 grow_vertical = 0
-text = "TESt"
+
+[node name="PlantSpawner" type="Node" parent="GroundSlot" node_paths=PackedStringArray("spawnButton")]
+script = ExtResource("9_4c57u")
+plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
+spawnButton = NodePath("../../ToolboxUi/toolbox/SpawnBtn")
+gridCellSize = Vector2i(200, 160)
+
+[node name="Grass" type="Node2D" parent="GroundSlot"]
+z_index = 200
+script = ExtResource("8_kek77")

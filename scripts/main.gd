@@ -7,8 +7,6 @@ extends Node
 @onready var mainDisplayX_RIGHT := mainDisplayX_LEFT + DisplayServer.screen_get_size().x
 @onready var mainScreenPosNull := Vector2(mainDisplayX_LEFT, 0)
 
-@onready var bg: Node2D = $Background
-
 enum TASKBAR_ORIENTATION {LEFT, RIGHT, UP, DOWN}
 
 @export var toolboxWindow: Control

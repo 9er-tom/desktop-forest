@@ -1,0 +1,69 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="48">
+            <item index="0" class="java.lang.String" itemvalue="mysqlclient" />
+            <item index="1" class="java.lang.String" itemvalue="drf-spectacular-sidecar" />
+            <item index="2" class="java.lang.String" itemvalue="clamd" />
+            <item index="3" class="java.lang.String" itemvalue="django-extensions" />
+            <item index="4" class="java.lang.String" itemvalue="mysql-connector-python" />
+            <item index="5" class="java.lang.String" itemvalue="drf-spectacular" />
+            <item index="6" class="java.lang.String" itemvalue="safety" />
+            <item index="7" class="java.lang.String" itemvalue="django-health-check" />
+            <item index="8" class="java.lang.String" itemvalue="pygraphviz" />
+            <item index="9" class="java.lang.String" itemvalue="djangorestframework" />
+            <item index="10" class="java.lang.String" itemvalue="django-cors-headers" />
+            <item index="11" class="java.lang.String" itemvalue="Markdown" />
+            <item index="12" class="java.lang.String" itemvalue="django-upload-validator" />
+            <item index="13" class="java.lang.String" itemvalue="xmlsec" />
+            <item index="14" class="java.lang.String" itemvalue="wheel" />
+            <item index="15" class="java.lang.String" itemvalue="django-rest-swagger" />
+            <item index="16" class="java.lang.String" itemvalue="pdfkit" />
+            <item index="17" class="java.lang.String" itemvalue="gunicorn" />
+            <item index="18" class="java.lang.String" itemvalue="zeep" />
+            <item index="19" class="java.lang.String" itemvalue="chardet" />
+            <item index="20" class="java.lang.String" itemvalue="django-csp" />
+            <item index="21" class="java.lang.String" itemvalue="django-filter" />
+            <item index="22" class="java.lang.String" itemvalue="Django" />
+            <item index="23" class="java.lang.String" itemvalue="django-axes" />
+            <item index="24" class="java.lang.String" itemvalue="django-redis" />
+            <item index="25" class="java.lang.String" itemvalue="django-db-logger" />
+            <item index="26" class="java.lang.String" itemvalue="xmltodict" />
+            <item index="27" class="java.lang.String" itemvalue="setuptools" />
+            <item index="28" class="java.lang.String" itemvalue="asgiref" />
+            <item index="29" class="java.lang.String" itemvalue="requests" />
+            <item index="30" class="java.lang.String" itemvalue="attrs" />
+            <item index="31" class="java.lang.String" itemvalue="sqlparse" />
+            <item index="32" class="java.lang.String" itemvalue="hiredis" />
+            <item index="33" class="java.lang.String" itemvalue="zlib" />
+            <item index="34" class="java.lang.String" itemvalue="platformdirs" />
+            <item index="35" class="java.lang.String" itemvalue="pip" />
+            <item index="36" class="java.lang.String" itemvalue="openssl" />
+            <item index="37" class="java.lang.String" itemvalue="typing_extensions" />
+            <item index="38" class="java.lang.String" itemvalue="anyio" />
+            <item index="39" class="java.lang.String" itemvalue="lxml" />
+            <item index="40" class="java.lang.String" itemvalue="pytz" />
+            <item index="41" class="java.lang.String" itemvalue="urllib3" />
+            <item index="42" class="java.lang.String" itemvalue="isodate" />
+            <item index="43" class="java.lang.String" itemvalue="h11" />
+            <item index="44" class="java.lang.String" itemvalue="sniffio" />
+            <item index="45" class="java.lang.String" itemvalue="pyjwt" />
+            <item index="46" class="java.lang.String" itemvalue="certifi" />
+            <item index="47" class="java.lang.String" itemvalue="redis" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E266" />
+          <option value="E261" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
