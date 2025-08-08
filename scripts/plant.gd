@@ -3,22 +3,31 @@ extends Control
 class_name Plant
 
 @export var outlineMaterial: ShaderMaterial
-@export var growthStageTime := 1.0 # seconds per stage
+@export var growthStageTime: float # seconds per stage
+@export var wateringDuration: float
 
 @onready var cursorTool: CursorTool = $"/root/Main/CursorTool"
 @onready var sprite := $AnimatedSprite2D
 
 @onready var growthStages: int = sprite.sprite_frames.get_frame_count(sprite.animation)
 @onready var growTimer: Timer = $GrowTimer
-@onready var waterTimer: Timer = $"WaterProgress/WaterTimer"
+
 var currentGrowthStage := 1
-var isWatered := false
+var isGrowing := false
+var isWatering := false
+var waterTimer := 0.0
 
 
-func _process(_delta: float) -> void:
-	if (isWatered):
+func _process(delta: float) -> void:
+	if isGrowing:
 		$"ProgressContainer/ProgressBar".value = growthStageTime - growTimer.time_left
-	$WaterProgress.value = waterTimer.wait_time - waterTimer.time_left 
+	elif isWatering:
+		if waterTimer < wateringDuration:
+			waterTimer += delta
+			$WaterProgress.value = waterTimer 
+		elif growTimer.time_left == 0: 
+			waterPlant()
+			
 
 func _ready() -> void:
 	var spriteSize = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame).get_size() * sprite.scale
@@ -30,10 +39,9 @@ func _ready() -> void:
 	_setup_progress_bar()
 	
 	growTimer.wait_time = growthStageTime
-	$WaterProgress.max_value = waterTimer.wait_time
+	$WaterProgress.max_value = wateringDuration
 	
 	growTimer.timeout.connect(_on_timer_timeout)
-	waterTimer.timeout.connect(_on_water_timer_timeout)
 	mouse_entered.connect(_on_mouse_enter)
 	mouse_exited.connect(_on_mouse_exit)
 	
@@ -45,18 +53,19 @@ func _setup_progress_bar() -> void:
 func _on_timer_timeout() -> void:
 	sprite.frame += 1
 	currentGrowthStage += 1
-	isWatered = false
+	isGrowing = false
+	$WaterProgress.value = 0.0
 	$"ProgressContainer/ProgressBar".value = 0.0
 	$"ProgressContainer/Label".text = "{curr}/{max}".format({"curr": currentGrowthStage, "max": growthStages})
 	growTimer.stop()
 	
 func _gui_input(event: InputEvent) -> void: 
 	if event.is_action_released("Interact"):
-		waterTimer.stop()
+		isWatering = false
 	if event.is_action_pressed("Interact"): 
 		match cursorTool.currentTool:
 			CursorTool.GardenTools.WATERING_CAN:
-				waterTimer.start()
+				isWatering = true
 
 func _on_mouse_enter() -> void: 
 	sprite.material = outlineMaterial
@@ -64,9 +73,9 @@ func _on_mouse_enter() -> void:
 func _on_mouse_exit() -> void:
 	sprite.material = null
 	
-func _on_water_timer_timeout():
-	waterTimer.stop()
-	isWatered = true
+
+func waterPlant() -> void:
+	isGrowing = true
+	waterTimer = 0.0
 	if currentGrowthStage != growthStages:
 		growTimer.start()
-	
