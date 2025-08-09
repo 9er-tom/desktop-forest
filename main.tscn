@@ -30,7 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h2yge")
-toolboxWindow = NodePath("ToolboxUi/toolbox")
+toolboxWindow = NodePath("")
 toolboxButton = NodePath("ToolboxUi/toolboxToggleButton")
 mainWindowReference = NodePath("ReferenceRect")
 windowHeight = 500
@@ -73,6 +73,7 @@ showElement = NodePath("../toolbox")
 hideElement = NodePath(".")
 
 [node name="toolbox" type="TextureRect" parent="ToolboxUi" node_paths=PackedStringArray("waterButton", "shovelButton", "cursorTool")]
+visible = false
 z_index = 400
 layout_mode = 0
 offset_right = 350.0
@@ -81,9 +82,10 @@ mouse_filter = 0
 texture = ExtResource("5_efxa6")
 expand_mode = 5
 script = ExtResource("8_2cqfq")
-waterButton = NodePath("WaterBtn/Button")
+waterButton = NodePath("WaterBtn")
 shovelButton = NodePath("RemoveBtn")
 cursorTool = NodePath("../../CursorTool")
+metadata/_custom_type_script = "uid://cbmt6774vgyy6"
 
 [node name="TextureButton" type="TextureButton" parent="ToolboxUi/toolbox" node_paths=PackedStringArray("cursorTool", "showElement", "hideElement")]
 layout_mode = 0
@@ -96,29 +98,16 @@ cursorTool = NodePath("../../../CursorTool")
 showElement = NodePath("../../toolboxToggleButton")
 hideElement = NodePath("..")
 
-[node name="WaterBtn" type="TextureRect" parent="ToolboxUi/toolbox"]
+[node name="WaterBtn" type="TextureButton" parent="ToolboxUi/toolbox"]
 texture_filter = 3
 layout_mode = 2
 offset_left = 51.0
 offset_top = 85.0
 offset_right = 115.0
 offset_bottom = 149.0
-texture = ExtResource("10_074og")
-expand_mode = 3
-
-[node name="Button" type="Button" parent="ToolboxUi/toolbox/WaterBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = -2.0
-offset_right = 11.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 2
-toggle_mode = true
-flat = true
+texture_normal = ExtResource("10_074og")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="SpawnBtn" type="TextureButton" parent="ToolboxUi/toolbox"]
 texture_filter = 3
@@ -204,7 +193,7 @@ Info"
 label_settings = SubResource("LabelSettings_272bh")
 horizontal_alignment = 1
 
-[node name="CursorTool" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("waterButton")]
+[node name="CursorTool" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("toolbox")]
 visible = false
 z_index = 1000
 z_as_relative = false
@@ -212,7 +201,7 @@ scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("17_yaehf")
 animation = &"wateringCan"
 script = ExtResource("14_w48qg")
-waterButton = NodePath("../ToolboxUi/toolbox/WaterBtn")
+toolbox = NodePath("../ToolboxUi/toolbox")
 
 [node name="GroundSlot" type="Control" parent="."]
 layout_mode = 1

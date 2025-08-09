@@ -54,7 +54,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 script = ExtResource("1_bswx0")
 outlineMaterial = SubResource("ShaderMaterial_nb6st")
-growthStageTime = 2.0
+growthStageTime = 1800.0
 wateringDuration = 2.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

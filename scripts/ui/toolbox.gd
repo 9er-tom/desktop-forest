@@ -1,4 +1,4 @@
-extends Control
+class_name Toolbox extends TextureRect
 
 @export var waterButton: BaseButton
 @export var shovelButton: BaseButton
@@ -10,3 +10,7 @@ func _ready() -> void:
 
 func _on_toolbutton_pressed(tool: CursorTool.GardenTools):
 	cursorTool.set_current_tool(tool)
+
+func show_all_tool_buttons():
+	waterButton.visible = true
+	shovelButton.visible = true

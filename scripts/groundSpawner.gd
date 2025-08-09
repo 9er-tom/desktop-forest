@@ -33,5 +33,4 @@ func _on_spawn_btn_pressed()-> void:
 	plantNode.position = spawnGrid[spawnGridIndex]
 	plantNode.position.y = get_parent().position.y - plantNode.position.y
 	spawnGrid.remove_at(spawnGridIndex)
-	print_debug(spawnGrid)
 	get_tree().root.add_child(plantNode)

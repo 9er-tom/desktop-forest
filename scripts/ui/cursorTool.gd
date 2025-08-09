@@ -1,8 +1,7 @@
-extends AnimatedSprite2D
-class_name CursorTool
+class_name CursorTool extends AnimatedSprite2D
 
 @export var mouseOffset := Vector2(20,20)
-@export var waterButton: Control
+@export var toolbox : Toolbox
 
 var lastButton: Control
 # icons should be 256x256
@@ -25,8 +24,8 @@ func set_current_tool(tool: GardenTools):
 	currentTool = tool
 	match currentTool:
 		GardenTools.WATERING_CAN:
-			waterButton.visible = false
-			lastButton = waterButton
+			toolbox.waterButton.visible = false
+			lastButton = toolbox.waterButton
 			animation = "wateringCan"
 			frame = 0
 		GardenTools.SHOVEL:
