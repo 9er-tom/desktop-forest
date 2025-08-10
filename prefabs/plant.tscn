@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://x1n5d7yptqgq"]
+[gd_scene load_steps=13 format=3 uid="uid://x1n5d7yptqgq"]
 
 [ext_resource type="Script" uid="uid://b3frrt2i7fywe" path="res://scripts/plant.gd" id="1_bswx0"]
 [ext_resource type="Shader" uid="uid://1umkeugo14g7" path="res://shader/outline.gdshader" id="2_8laha"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cbdkpww4tf8ct" path="res://assets/plants/4.PNG" id="5_jiiti"]
 [ext_resource type="Texture2D" uid="uid://cmibvwsat2lwn" path="res://assets/plants/5.PNG" id="6_xrecf"]
 [ext_resource type="Texture2D" uid="uid://b7m2wddbrjvm5" path="res://assets/ui/waterdrop.png" id="8_8laha"]
+[ext_resource type="Shader" uid="uid://b1x2e4onsxwc2" path="res://shader/filling.gdshader" id="8_r0ox0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nb6st"]
 shader = ExtResource("2_8laha")
@@ -41,6 +42,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0ox0"]
+resource_local_to_scene = true
+shader = ExtResource("8_r0ox0")
+shader_parameter/progress = 0.0
+
 [node name="Plant" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -70,25 +76,15 @@ mouse_filter = 2
 border_width = 2.0
 editor_only = false
 
-[node name="WaterProgress" type="ProgressBar" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -2.0
-offset_top = -60.0
-offset_right = 2.0
-offset_bottom = -33.0
-grow_horizontal = 2
-max_value = 2.5
-
 [node name="ThirstIcon" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_r0ox0")
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
-offset_top = -50.0
-offset_bottom = -14.991
+offset_top = -40.0
+offset_bottom = -4.991
 grow_horizontal = 2
 texture = ExtResource("8_8laha")
 expand_mode = 5

@@ -217,6 +217,7 @@ script = ExtResource("9_4c57u")
 plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
 spawnButton = NodePath("../../ToolboxUi/toolbox/SpawnBtn")
 gridCellSize = Vector2i(200, 160)
+gridCellYMaxOffset = 50
 
 [node name="Grass" type="Node2D" parent="GroundSlot"]
 z_index = 200

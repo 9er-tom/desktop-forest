@@ -1,4 +1,4 @@
-extends Control 
+extends Control
 class_name Plant
 
 @export var outlineMaterial: ShaderMaterial
@@ -6,21 +6,17 @@ class_name Plant
 @export var wateringDuration: float
 
 @onready var debugButton: CheckButton = $"/root/Main/ToolboxUi/toolbox/DebugBtn"
-
 @onready var cursorTool: CursorTool = $"/root/Main/CursorTool"
 @onready var thirstIcon: TextureRect = $ThirstIcon
 @onready var sprite := $AnimatedSprite2D
-
 @onready var growthProgressBar: ProgressBar = $"DebugInfo/ProgressContainer/ProgressBar"
 @onready var growthStateLabel: Label = $"DebugInfo/StateLabel"
 @onready var growthProgressLabel: Label = $"DebugInfo/ProgressContainer/ProgressLabel"
-
 @onready var growthStages: int = sprite.sprite_frames.get_frame_count(sprite.animation)
 @onready var growTimer: Timer = $GrowTimer
 
 var currentGrowthStage := 1
-var waterTimer := 0.0
-
+var waterTimer         := 0.0
 enum PLANT_STATES {
 	IDLE,
 	WATERING,
@@ -29,14 +25,15 @@ enum PLANT_STATES {
 }
 var state := PLANT_STATES.IDLE
 
+
 func _process(delta: float) -> void:
 	growthStateLabel.text = PLANT_STATES.keys()[state]
-	
+
 	match state:
 		PLANT_STATES.WATERING:
 			if waterTimer < wateringDuration:
 				waterTimer += delta
-				$WaterProgress.value = waterTimer
+				thirstIcon.material.set_shader_parameter("progress", waterTimer / wateringDuration)
 			elif growTimer.time_left == 0:
 				waterPlant()
 		PLANT_STATES.GROWING:
@@ -46,31 +43,33 @@ func _process(delta: float) -> void:
 		PLANT_STATES.FULLY_GROWN:
 			return
 
+
 func _ready() -> void:
 	debugButton.pressed.connect(_on_debug_button)
 	if not debugButton.is_pressed(): #
 		_on_debug_button()
-		
+
 	var spriteSize = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame).get_size() * sprite.scale
 	sprite.position = Vector2(spriteSize.x / 2, spriteSize.y / 2)
-	
+
 	size = Vector2(spriteSize.x, spriteSize.y)
 	$ReferenceRect.size = size
-	
+
 	_setup_progress_bar()
-	
+
 	growTimer.wait_time = growthStageTime
-	$WaterProgress.max_value = wateringDuration
-	
+
 	growTimer.timeout.connect(_on_grow_timer_timeout)
 	mouse_entered.connect(_on_mouse_enter)
 	mouse_exited.connect(_on_mouse_exit)
-	
+
+
 func _setup_progress_bar() -> void:
 	$DebugInfo.position.y -= 100
 	growthProgressLabel.text = "{curr}/{max}".format({"curr": currentGrowthStage, "max": growthStages})
 	growthProgressBar.max_value = growthStageTime
-	
+
+
 func _on_grow_timer_timeout() -> void:
 	sprite.frame += 1
 	currentGrowthStage += 1
@@ -79,31 +78,34 @@ func _on_grow_timer_timeout() -> void:
 	else:
 		state = PLANT_STATES.IDLE
 		thirstIcon.visible = true
-		$WaterProgress.value = 0.0
 		growthProgressBar.value = 0.0
 	growthProgressLabel.text = "{curr}/{max}".format({"curr": currentGrowthStage, "max": growthStages})
 	growTimer.stop()
-	
-func _gui_input(event: InputEvent) -> void: 
+
+
+func _gui_input(event: InputEvent) -> void:
 	if event.is_action_released("Interact"):
 		if state == PLANT_STATES.WATERING:
 			state = PLANT_STATES.IDLE
-	if event.is_action_pressed("Interact"): 
+	if event.is_action_pressed("Interact"):
 		match cursorTool.currentTool:
 			CursorTool.GardenTools.WATERING_CAN:
 				if state == PLANT_STATES.IDLE:
 					state = PLANT_STATES.WATERING
 
-func _on_mouse_enter() -> void: 
+
+func _on_mouse_enter() -> void:
 	sprite.material = outlineMaterial
-	
+
+
 func _on_mouse_exit() -> void:
 	sprite.material = null
-	
+
+
 func _on_debug_button():
 	$DebugInfo.visible = !$DebugInfo.visible
-	$WaterProgress.visible = !$WaterProgress.visible
 	$ReferenceRect.visible = !$ReferenceRect.visible
+
 
 func waterPlant() -> void:
 	state = PLANT_STATES.GROWING

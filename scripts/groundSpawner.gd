@@ -18,7 +18,7 @@ func _make_spawn_grid() -> void:
 	var currentGridX := gridCellSize.x/2
 	while currentGridX < screenSize.x - gridCellSize.x/2:
 		var gutter = randi_range(5, gridMaxGutter)
-		var spawnSlot :=Vector2i(currentGridX, gridCellSize.y - randi_range(10,gridCellYMaxOffset)) 
+		var spawnSlot :=Vector2i(currentGridX, gridCellSize.y - randi_range(30,gridCellYMaxOffset)) 
 		spawnGrid.append(spawnSlot)
 		currentGridX += gridCellSize.x + gutter
 
