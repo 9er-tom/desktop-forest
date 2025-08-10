@@ -1,35 +1,44 @@
+class_name GroundSpawner
 extends Node
 
 @export var plantPrefabs: Array[PackedScene]
 @export var spawnButton: TextureButton
-
+@export var spawnSlotPrefab: PackedScene
+@export var cursorTool: CursorTool
 @export var gridCellSize: Vector2i
 @export var gridMaxGutter := 20
-@export var gridCellYMaxOffset := 30
+@export var gridCellYMaxOffset : int
+@export var gridCellYMinOffset : int
 
-var spawnGrid: Array[Vector2i]
+var groundPosY : float
+var usedSlots : Array[String]
+
 func _ready() -> void:
-	spawnButton.pressed.connect(_on_spawn_btn_pressed)
 	_make_spawn_grid.call_deferred() # defer this to after main window resize
 
+
 func _make_spawn_grid() -> void:
-	var screenSize := get_window().size
+	groundPosY = get_parent().position.y
+	var screenSize   := get_window().size
 	var currentGridX := gridCellSize.x/2
 	while currentGridX < screenSize.x - gridCellSize.x/2:
-		var gutter = randi_range(5, gridMaxGutter)
-		var spawnSlot :=Vector2i(currentGridX, gridCellSize.y - randi_range(30,gridCellYMaxOffset)) 
-		spawnGrid.append(spawnSlot)
+		var gutter          = randi_range(5, gridMaxGutter)
+		var slot: SpawnSlot = spawnSlotPrefab.instantiate()
+		slot.position = Vector2(currentGridX, groundPosY - gridCellSize.y - randi_range(gridCellYMinOffset, gridCellYMaxOffset))
+		slot.size = gridCellSize
+		add_child(slot)
+		print_debug(slot.position)
 		currentGridX += gridCellSize.x + gutter
 
-func _on_spawn_btn_pressed()-> void:
-	if spawnGrid.size() == 0:
+
+func spawn_in_slot(slot: SpawnSlot)-> void:
+	if usedSlots.find(slot.name) != -1:
 		return
+		
 	var plantIndex := randi_range(0, plantPrefabs.size() - 1)
-	var plantNode := plantPrefabs[plantIndex].instantiate()
+	var plantNode  := plantPrefabs[plantIndex].instantiate()
 	
-	var spawnGridIndex = randi_range(0, spawnGrid.size() - 1)
-	
-	plantNode.position = spawnGrid[spawnGridIndex]
-	plantNode.position.y = get_parent().position.y - plantNode.position.y
-	spawnGrid.remove_at(spawnGridIndex)
 	get_tree().root.add_child(plantNode)
+	usedSlots.append(slot.name)
+	plantNode.position = slot.position
+	plantNode.position.y += gridCellSize.y - plantNode.size.y

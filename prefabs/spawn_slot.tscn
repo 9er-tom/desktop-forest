@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0v3e5a1pvq12"]
+
+[ext_resource type="Script" uid="uid://ck3xwhamn8lit" path="res://scripts/spawnSlot.gd" id="1_3o7sg"]
+
+[node name="SpawnSlot" type="Control" node_paths=PackedStringArray("refRect")]
+custom_minimum_size = Vector2(150, 300)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_3o7sg")
+refRect = NodePath("ReferenceRect")
+metadata/_custom_type_script = "uid://ck3xwhamn8lit"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+border_color = Color(0, 0.840813, 0.430937, 1)
+editor_only = false

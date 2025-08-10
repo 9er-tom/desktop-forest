@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cisff3wt23ujv"]
+[gd_scene load_steps=20 format=3 uid="uid://cisff3wt23ujv"]
 
 [ext_resource type="Script" uid="uid://b1b0hlveqelsp" path="res://scripts/main.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://cg55tm2kh47nv" path="res://scripts/Screenshot 2024-10-20 140952.png" id="2_0xm2m"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://ba2blslevye0x" path="res://scripts/groundSpawner.gd" id="9_4c57u"]
 [ext_resource type="Texture2D" uid="uid://20ms6hufpor2" path="res://assets/ui/toolIcons/wateringCan/1.PNG" id="10_074og"]
 [ext_resource type="Script" uid="uid://blb8ddjhcs68m" path="res://scripts/ui/cursorTool.gd" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://c0v3e5a1pvq12" path="res://prefabs/spawn_slot.tscn" id="17_074og"]
 [ext_resource type="SpriteFrames" uid="uid://b6r8t4ppxp44f" path="res://assets/ui/cursorToolFrames.tres" id="17_yaehf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_272bh"]
@@ -33,10 +34,11 @@ script = ExtResource("1_h2yge")
 toolboxWindow = NodePath("")
 toolboxButton = NodePath("ToolboxUi/toolboxToggleButton")
 mainWindowReference = NodePath("ReferenceRect")
-windowHeight = 500
+windowHeight = 650
 taskbarOrientation = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="."]
+visible = false
 layout_mode = 0
 mouse_filter = 2
 border_width = 5.0
@@ -52,6 +54,7 @@ script = ExtResource("3_h2yge")
 speed = 5
 
 [node name="ToolboxUi" type="Control" parent="."]
+z_index = 300
 layout_mode = 3
 anchors_preset = 0
 offset_left = 1473.0
@@ -195,12 +198,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="PlantSpawner" type="Node" parent="GroundSlot" node_paths=PackedStringArray("spawnButton")]
+[node name="PlantSpawner" type="Node" parent="GroundSlot" node_paths=PackedStringArray("spawnButton", "cursorTool")]
 script = ExtResource("9_4c57u")
 plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
 spawnButton = NodePath("../../ToolboxUi/toolbox/SeedBtn")
-gridCellSize = Vector2i(200, 160)
-gridCellYMaxOffset = 50
+spawnSlotPrefab = ExtResource("17_074og")
+cursorTool = NodePath("../../CursorTool")
+gridCellSize = Vector2i(180, 300)
+gridCellYMaxOffset = 30
+gridCellYMinOffset = 10
 
 [node name="Grass" type="Node2D" parent="GroundSlot"]
 z_index = 200
