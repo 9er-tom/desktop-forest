@@ -22,15 +22,22 @@ func _process(_delta: float) -> void:
 		
 func set_current_tool(tool: GardenTools):
 	currentTool = tool
+	if lastButton:
+		lastButton.visible = true
+
 	match currentTool:
 		GardenTools.WATERING_CAN:
 			toolbox.waterButton.visible = false
 			lastButton = toolbox.waterButton
 			animation = "wateringCan"
 			frame = 0
-		GardenTools.SHOVEL:
-			animation = "wateringCan" # todo change this to shovel
-			frame = 5
+			scale = Vector2(0.6,0.6)
+		GardenTools.SEED:
+			toolbox.seedButton.visible = false
+			lastButton = toolbox.seedButton
+			animation = "seed"
+			frame = 0
+			scale = Vector2(0.3,0.3)
 		GardenTools.NONE:
 			visible = false
 			return

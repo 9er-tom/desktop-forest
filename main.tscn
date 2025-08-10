@@ -72,8 +72,7 @@ script = ExtResource("6_ycdy4")
 showElement = NodePath("../toolbox")
 hideElement = NodePath(".")
 
-[node name="toolbox" type="TextureRect" parent="ToolboxUi" node_paths=PackedStringArray("waterButton", "shovelButton", "cursorTool")]
-visible = false
+[node name="toolbox" type="TextureRect" parent="ToolboxUi" node_paths=PackedStringArray("waterButton", "seedButton", "shovelButton", "cursorTool")]
 z_index = 400
 layout_mode = 0
 offset_right = 350.0
@@ -83,6 +82,7 @@ texture = ExtResource("5_efxa6")
 expand_mode = 5
 script = ExtResource("8_2cqfq")
 waterButton = NodePath("WaterBtn")
+seedButton = NodePath("SeedBtn")
 shovelButton = NodePath("RemoveBtn")
 cursorTool = NodePath("../../CursorTool")
 metadata/_custom_type_script = "uid://cbmt6774vgyy6"
@@ -109,34 +109,17 @@ texture_normal = ExtResource("10_074og")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="SpawnBtn" type="TextureButton" parent="ToolboxUi/toolbox"]
+[node name="SeedBtn" type="TextureButton" parent="ToolboxUi/toolbox"]
 texture_filter = 3
 layout_mode = 2
-offset_left = 141.0
-offset_top = 80.0
-offset_right = 205.0
-offset_bottom = 144.0
-texture_normal = ExtResource("5_272bh")
-texture_pressed = ExtResource("6_5vw27")
-texture_hover = ExtResource("7_kek77")
+offset_left = 154.0
+offset_top = 95.0
+offset_right = 218.0
+offset_bottom = 159.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("5_dg77c")
+ignore_texture_size = true
 stretch_mode = 0
-
-[node name="Label" type="Label" parent="ToolboxUi/toolbox/SpawnBtn"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.0
-offset_top = -13.0
-offset_right = 52.0
-offset_bottom = 7.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Plant"
-label_settings = SubResource("LabelSettings_272bh")
-horizontal_alignment = 1
 
 [node name="RemoveBtn" type="TextureButton" parent="ToolboxUi/toolbox"]
 texture_filter = 3
@@ -199,7 +182,7 @@ z_index = 1000
 z_as_relative = false
 scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("17_yaehf")
-animation = &"wateringCan"
+animation = &"seed"
 script = ExtResource("14_w48qg")
 toolbox = NodePath("../ToolboxUi/toolbox")
 
@@ -215,7 +198,7 @@ grow_vertical = 0
 [node name="PlantSpawner" type="Node" parent="GroundSlot" node_paths=PackedStringArray("spawnButton")]
 script = ExtResource("9_4c57u")
 plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
-spawnButton = NodePath("../../ToolboxUi/toolbox/SpawnBtn")
+spawnButton = NodePath("../../ToolboxUi/toolbox/SeedBtn")
 gridCellSize = Vector2i(200, 160)
 gridCellYMaxOffset = 50
 

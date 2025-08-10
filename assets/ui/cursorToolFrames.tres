@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://b6r8t4ppxp44f"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://b6r8t4ppxp44f"]
 
 [ext_resource type="Texture2D" uid="uid://20ms6hufpor2" path="res://assets/ui/toolIcons/wateringCan/1.PNG" id="1_1vx2f"]
+[ext_resource type="Texture2D" uid="uid://c3matn5qctx83" path="res://assets/ui/acorn.PNG" id="1_qx6ro"]
 [ext_resource type="Texture2D" uid="uid://bwek6pgfvhxe" path="res://assets/ui/toolIcons/wateringCan/2.PNG" id="2_qx6ro"]
 [ext_resource type="Texture2D" uid="uid://ca0rjvocolrm8" path="res://assets/ui/toolIcons/wateringCan/3.PNG" id="3_xl1wt"]
 [ext_resource type="Texture2D" uid="uid://kopwvpbk5fsu" path="res://assets/ui/toolIcons/wateringCan/4.PNG" id="4_vqn1w"]
@@ -10,6 +11,14 @@
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qx6ro")
+}],
+"loop": true,
+"name": &"seed",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_1vx2f")
