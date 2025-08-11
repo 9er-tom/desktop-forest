@@ -45,9 +45,8 @@ func _process(delta: float) -> void:
 
 
 func _ready() -> void:
-	debugButton.pressed.connect(_on_debug_button)
-	if not debugButton.is_pressed(): #
-		_on_debug_button()
+	GlobalDebugInfo.debug_info_toggled.connect(_on_debug_info_toggled)
+	_on_debug_info_toggled(GlobalDebugInfo.debugInfoEnabled)
 
 	var spriteSize = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame).get_size() * sprite.scale
 	sprite.position = Vector2(spriteSize.x / 2, spriteSize.y / 2)
@@ -102,9 +101,9 @@ func _on_mouse_exit() -> void:
 	sprite.material = null
 
 
-func _on_debug_button():
-	$DebugInfo.visible = !$DebugInfo.visible
-	$ReferenceRect.visible = !$ReferenceRect.visible
+func _on_debug_info_toggled(toggled_on: bool):
+	$DebugInfo.visible = toggled_on
+	$ReferenceRect.visible = toggled_on
 
 
 func waterPlant() -> void:

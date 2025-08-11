@@ -23,7 +23,7 @@
 font_size = 14
 font_color = Color(0, 0, 0, 1)
 
-[node name="Main" type="Control" node_paths=PackedStringArray("toolboxWindow", "toolboxButton", "mainWindowReference")]
+[node name="Main" type="Control" node_paths=PackedStringArray("toolboxButton", "mainWindowReference")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +31,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h2yge")
-toolboxWindow = NodePath("")
 toolboxButton = NodePath("ToolboxUi/toolboxToggleButton")
 mainWindowReference = NodePath("ReferenceRect")
 windowHeight = 650
@@ -55,20 +54,26 @@ speed = 5
 
 [node name="ToolboxUi" type="Control" parent="."]
 z_index = 300
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1473.0
-offset_top = 2.0
-offset_right = 1513.0
-offset_bottom = 42.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="toolboxToggleButton" type="TextureButton" parent="ToolboxUi" node_paths=PackedStringArray("showElement", "hideElement")]
 z_index = 400
-layout_mode = 0
-offset_left = 238.0
-offset_top = 230.0
-offset_right = 484.0
-offset_bottom = 501.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -135.5
+offset_bottom = 135.5
+grow_horizontal = 0
+grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("5_dg77c")
 script = ExtResource("6_ycdy4")
@@ -78,9 +83,17 @@ hideElement = NodePath(".")
 [node name="toolbox" type="TextureRect" parent="ToolboxUi" node_paths=PackedStringArray("waterButton", "seedButton", "shovelButton", "cursorTool")]
 visible = false
 z_index = 400
-layout_mode = 0
-offset_right = 350.0
-offset_bottom = 344.419
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -172.21
+offset_bottom = 172.21
+grow_horizontal = 0
+grow_vertical = 2
 mouse_filter = 0
 texture = ExtResource("5_efxa6")
 expand_mode = 5

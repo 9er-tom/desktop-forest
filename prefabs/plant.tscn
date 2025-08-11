@@ -12,7 +12,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nb6st"]
 shader = ExtResource("2_8laha")
-shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0, 0.840813, 0.430937, 1)
 shader_parameter/width = 10.0
 shader_parameter/pattern = 1
 shader_parameter/inside = false
