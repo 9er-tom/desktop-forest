@@ -76,6 +76,7 @@ showElement = NodePath("../toolbox")
 hideElement = NodePath(".")
 
 [node name="toolbox" type="TextureRect" parent="ToolboxUi" node_paths=PackedStringArray("waterButton", "seedButton", "shovelButton", "cursorTool")]
+visible = false
 z_index = 400
 layout_mode = 0
 offset_right = 350.0
@@ -204,7 +205,7 @@ plantPrefabs = Array[PackedScene]([ExtResource("8_4c57u")])
 spawnButton = NodePath("../../ToolboxUi/toolbox/SeedBtn")
 spawnSlotPrefab = ExtResource("17_074og")
 cursorTool = NodePath("../../CursorTool")
-gridCellSize = Vector2i(180, 300)
+gridMaxGutter = 30
 gridCellYMaxOffset = 30
 gridCellYMinOffset = 10
 

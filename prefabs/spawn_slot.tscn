@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://ck3xwhamn8lit" path="res://scripts/spawnSlot.gd" id="1_3o7sg"]
 
 [node name="SpawnSlot" type="Control" node_paths=PackedStringArray("refRect")]
-custom_minimum_size = Vector2(150, 300)
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
